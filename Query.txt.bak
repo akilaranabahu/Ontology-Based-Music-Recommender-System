@@ -1,0 +1,108 @@
+Before activating the reasoner
+
+1.Special Song class
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX  dbo:<http://www.song.com/ontologies/song.owl#>
+SELECT ?subject 
+	WHERE { ?subject rdfs:subClassOf dbo:SpecialSong}
+
+------------------------------------------------------------------------------
+
+2.Lovesong Description
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX  dbo:<http://www.song.com/ontologies/song.owl#>
+SELECT ?subject 
+	WHERE { ?subject rdf:type dbo:Lovesong}
+
+---------------------------------------------------------------------------------
+
+3.Long Love song 
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX  dbo:<http://www.song.com/ontologies/song.owl#>
+SELECT ?subject 
+	WHERE { ?subject rdf:type dbo:Lovesong .
+                                           ?subject  dbo:hasSongTimeValue   ?Time
+                                                   FILTER ( ?Time> 200)
+                                        }
+										
+--------------------------------------------------------------------------------
+4.Popular Motivational Rap song
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX  dbo:<http://www.song.com/ontologies/song.owl#>
+SELECT ?subject 
+	WHERE { ?subject rdf:type dbo:MotivationalRapSong .
+                                           ?subject  dbo:hasBilbordChartValue  ?popular .
+                                                   FILTER ( ?popular< 50)
+                                        }
+
+
+
+
+
+After activating the reasoner
+
+1.Long Poya day song
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX  dbo:<http://www.song.com/ontologies/song.owl#>
+SELECT ?subject 
+	WHERE { ?subject rdf:type dbo:PoyadaySong .
+                                           ?subject  dbo:hasSongTimeValue   ?Time
+                                                   FILTER ( ?Time> 200)
+                                        }
+									
+									
+-----------------------------------------------------------------------------------------------
+2.Long morning Motivational song
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX  dbo:<http://www.song.com/ontologies/song.owl#>
+SELECT ?subject 
+	WHERE { ?subject rdf:type dbo:MorningMotivatelSong .
+                                           ?subject  dbo:hasBilbordChartValue  ?popular .
+                                                   FILTER ( ?popular< 50) .
+                                          ?subject  dbo:hasSongTimeValue   ?Time .
+                                                 FILTER ( ?Time> 200) }
+												 
+												 
+
+
+
+
+-----------------------------------------------------------------------------
+
+3.Popular long wedding anniversary  Song
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX  dbo:<http://www.song.com/ontologies/song.owl#>
+SELECT ?subject 
+	WHERE { ?subject rdf:type dbo:WeddingAnniversarySong .
+                                           ?subject  dbo:hasBilbordChartValue  ?popular .
+                                                   FILTER ( ?popular< 300) .
+                                          ?subject  dbo:hasSongTimeValue   ?Time .
+                                                 FILTER ( ?Time> 200) }                       

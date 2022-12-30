@@ -1,0 +1,1074 @@
+@prefix : <http://www.song.com/ontologies/song.owl#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.song.com/ontologies/song.owl> .
+
+<http://www.song.com/ontologies/song.owl> rdf:type owl:Ontology ;
+                                           rdfs:comment "A song ontology that  describe various song based on their category" .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.song.com/ontologies/song.owl#hasCategory
+:hasCategory rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasbelong ;
+             owl:inverseOf :isCategoryOf ;
+             rdfs:domain :Song ;
+             rdfs:range :SongCategory .
+
+
+###  http://www.song.com/ontologies/song.owl#hasbelong
+:hasbelong rdf:type owl:ObjectProperty ;
+           owl:inverseOf :isBelongOf .
+
+
+###  http://www.song.com/ontologies/song.owl#haspublisher
+:haspublisher rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasbelong ;
+              owl:inverseOf :isPublisherOf ;
+              rdfs:domain :Song ;
+              rdfs:range :SongPblisher .
+
+
+###  http://www.song.com/ontologies/song.owl#isBelongOf
+:isBelongOf rdf:type owl:ObjectProperty .
+
+
+###  http://www.song.com/ontologies/song.owl#isCategoryOf
+:isCategoryOf rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :isBelongOf ;
+              rdfs:domain :SongCategory ;
+              rdfs:range :Song .
+
+
+###  http://www.song.com/ontologies/song.owl#isPublisherOf
+:isPublisherOf rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf :isBelongOf ;
+               rdfs:domain :SongPblisher ;
+               rdfs:range :Song .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.song.com/ontologies/song.owl#hasBilbordChartValue
+:hasBilbordChartValue rdf:type owl:DatatypeProperty .
+
+
+###  http://www.song.com/ontologies/song.owl#hasSongTimeValue
+:hasSongTimeValue rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.song.com/ontologies/song.owl#BailaSong
+:BailaSong rdf:type owl:Class ;
+           rdfs:subClassOf :FolkSongs .
+
+
+###  http://www.song.com/ontologies/song.owl#BalladSong
+:BalladSong rdf:type owl:Class ;
+            rdfs:subClassOf :FolkSongs .
+
+
+###  http://www.song.com/ontologies/song.owl#BirthdayPartySong
+:BirthdayPartySong rdf:type owl:Class ;
+                   owl:equivalentClass [ owl:intersectionOf ( :Song
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasCategory ;
+                                                                owl:someValuesFrom :CalypsoBailaSong
+                                                              ]
+                                                            ) ;
+                                         rdf:type owl:Class
+                                       ] .
+
+
+###  http://www.song.com/ontologies/song.owl#BorderBalladSong
+:BorderBalladSong rdf:type owl:Class ;
+                  rdfs:subClassOf :BalladSong ;
+                  owl:disjointWith :BroadSideBallad .
+
+
+###  http://www.song.com/ontologies/song.owl#BroadSideBallad
+:BroadSideBallad rdf:type owl:Class ;
+                 rdfs:subClassOf :BalladSong .
+
+
+###  http://www.song.com/ontologies/song.owl#BuddhistSong
+:BuddhistSong rdf:type owl:Class ;
+              rdfs:subClassOf :ReligiousSong ;
+              owl:disjointWith :ChristianSong .
+
+
+###  http://www.song.com/ontologies/song.owl#CalypsoBailaSong
+:CalypsoBailaSong rdf:type owl:Class ;
+                  rdfs:subClassOf :BailaSong .
+
+
+###  http://www.song.com/ontologies/song.owl#CartPoem
+:CartPoem rdf:type owl:Class ;
+          rdfs:subClassOf :FolkSongs .
+
+
+###  http://www.song.com/ontologies/song.owl#ChartSong
+:ChartSong rdf:type owl:Class ;
+           rdfs:subClassOf :PopSong ;
+           owl:disjointWith :CheeseSong .
+
+
+###  http://www.song.com/ontologies/song.owl#CheeseSong
+:CheeseSong rdf:type owl:Class ;
+            rdfs:subClassOf :PopSong .
+
+
+###  http://www.song.com/ontologies/song.owl#ChorousBailaSong
+:ChorousBailaSong rdf:type owl:Class ;
+                  rdfs:subClassOf :BailaSong .
+
+
+###  http://www.song.com/ontologies/song.owl#ChristianSong
+:ChristianSong rdf:type owl:Class ;
+               rdfs:subClassOf :ReligiousSong .
+
+
+###  http://www.song.com/ontologies/song.owl#ChristmasPartySong
+:ChristmasPartySong rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasCategory ;
+                                          owl:someValuesFrom :ChristianSong
+                                        ] ;
+                    rdfs:subClassOf :Song .
+
+
+###  http://www.song.com/ontologies/song.owl#ChristmasSong
+:ChristmasSong rdf:type owl:Class ;
+               rdfs:subClassOf :SpecialSong ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasCategory ;
+                                 owl:someValuesFrom :ChristianSong
+                               ] .
+
+
+###  http://www.song.com/ontologies/song.owl#Christmasdaysong
+:Christmasdaysong rdf:type owl:Class ;
+                  owl:equivalentClass [ owl:intersectionOf ( :Song
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty :hasCategory ;
+                                                               owl:someValuesFrom :ChristianSong
+                                                             ]
+                                                           ) ;
+                                        rdf:type owl:Class
+                                      ] .
+
+
+###  http://www.song.com/ontologies/song.owl#DeathMetalSong
+:DeathMetalSong rdf:type owl:Class ;
+                rdfs:subClassOf :RockSong .
+
+
+###  http://www.song.com/ontologies/song.owl#DevotionalSong
+:DevotionalSong rdf:type owl:Class ;
+                rdfs:subClassOf :BuddhistSong ;
+                owl:disjointWith :DhammaSong .
+
+
+###  http://www.song.com/ontologies/song.owl#DhammaSong
+:DhammaSong rdf:type owl:Class ;
+            rdfs:subClassOf :BuddhistSong .
+
+
+###  http://www.song.com/ontologies/song.owl#DramaSong
+:DramaSong rdf:type owl:Class ;
+           rdfs:subClassOf :SongCategory .
+
+
+###  http://www.song.com/ontologies/song.owl#Feelingmode
+:Feelingmode rdf:type owl:Class ;
+             owl:equivalentClass [ rdf:type owl:Class ;
+                                   owl:unionOf ( :Happy
+                                                 :Neutral
+                                                 :Sad
+                                               )
+                                 ] .
+
+
+###  http://www.song.com/ontologies/song.owl#FerryPoems
+:FerryPoems rdf:type owl:Class ;
+            rdfs:subClassOf :FolkSongs .
+
+
+###  http://www.song.com/ontologies/song.owl#FolkSongs
+:FolkSongs rdf:type owl:Class ;
+           rdfs:subClassOf :SongCategory .
+
+
+###  http://www.song.com/ontologies/song.owl#GalPoems
+:GalPoems rdf:type owl:Class ;
+          rdfs:subClassOf :FolkSongs .
+
+
+###  http://www.song.com/ontologies/song.owl#GangstaSong
+:GangstaSong rdf:type owl:Class ;
+             rdfs:subClassOf :HipHopSong .
+
+
+###  http://www.song.com/ontologies/song.owl#Happy
+:Happy rdf:type owl:Class ;
+       rdfs:subClassOf :Feelingmode .
+
+
+###  http://www.song.com/ontologies/song.owl#HipHopSong
+:HipHopSong rdf:type owl:Class ;
+            rdfs:subClassOf :SongCategory .
+
+
+###  http://www.song.com/ontologies/song.owl#IndieSong
+:IndieSong rdf:type owl:Class ;
+           rdfs:subClassOf :RockSong .
+
+
+###  http://www.song.com/ontologies/song.owl#KamulanguSong
+:KamulanguSong rdf:type owl:Class ;
+               rdfs:subClassOf :FolkSongs .
+
+
+###  http://www.song.com/ontologies/song.owl#KobaltMusic
+:KobaltMusic rdf:type owl:Class ;
+             rdfs:subClassOf :SongPblisher .
+
+
+###  http://www.song.com/ontologies/song.owl#LongSong
+:LongSong rdf:type owl:Class ;
+          owl:equivalentClass [ owl:intersectionOf ( :Song
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty :hasSongTimeValue ;
+                                                       owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                            owl:onDatatype xsd:integer ;
+                                                                            owl:withRestrictions ( [ xsd:minInclusive 200
+                                                                                                   ]
+                                                                                                 )
+                                                                          ]
+                                                     ]
+                                                   ) ;
+                                rdf:type owl:Class
+                              ] .
+
+
+###  http://www.song.com/ontologies/song.owl#Lovesong
+:Lovesong rdf:type owl:Class ;
+          rdfs:subClassOf :SpecialSong ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasCategory ;
+                            owl:someValuesFrom :BorderBalladSong
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasCategory ;
+                            owl:someValuesFrom :RomanticSong
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasCategory ;
+                            owl:someValuesFrom :SpecialDramaSong
+                          ] .
+
+
+###  http://www.song.com/ontologies/song.owl#MEntertainment
+:MEntertainment rdf:type owl:Class ;
+                rdfs:subClassOf :SongPblisher .
+
+
+###  http://www.song.com/ontologies/song.owl#MetalSong
+:MetalSong rdf:type owl:Class ;
+           rdfs:subClassOf :RockSong .
+
+
+###  http://www.song.com/ontologies/song.owl#MinesPoem
+:MinesPoem rdf:type owl:Class ;
+           rdfs:subClassOf :FolkSongs .
+
+
+###  http://www.song.com/ontologies/song.owl#MohombiSong
+:MohombiSong rdf:type owl:Class ;
+             rdfs:subClassOf :ReggaeSong .
+
+
+###  http://www.song.com/ontologies/song.owl#MorningMotivatelSong
+:MorningMotivatelSong rdf:type owl:Class ;
+                      owl:equivalentClass [ owl:intersectionOf ( :Song
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty :hasCategory ;
+                                                                   owl:someValuesFrom :MotivationalSong
+                                                                 ]
+                                                               ) ;
+                                            rdf:type owl:Class
+                                          ] .
+
+
+###  http://www.song.com/ontologies/song.owl#MotivationalRapSong
+:MotivationalRapSong rdf:type owl:Class ;
+                     rdfs:subClassOf :SpecialSong ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasCategory ;
+                                       owl:someValuesFrom :MotivationalSong
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasCategory ;
+                                       owl:someValuesFrom :RapSong
+                                     ] .
+
+
+###  http://www.song.com/ontologies/song.owl#MotivationalSong
+:MotivationalSong rdf:type owl:Class ;
+                  rdfs:subClassOf :PsychologicalSong .
+
+
+###  http://www.song.com/ontologies/song.owl#Neutral
+:Neutral rdf:type owl:Class ;
+         rdfs:subClassOf :Feelingmode .
+
+
+###  http://www.song.com/ontologies/song.owl#NimboodaSong
+:NimboodaSong rdf:type owl:Class ;
+              rdfs:subClassOf :FolkSongs .
+
+
+###  http://www.song.com/ontologies/song.owl#NormalTeledramaSong
+:NormalTeledramaSong rdf:type owl:Class ;
+                     rdfs:subClassOf :TeledramaSong ;
+                     owl:disjointWith :TvSeriesSong .
+
+
+###  http://www.song.com/ontologies/song.owl#NurthiSong
+:NurthiSong rdf:type owl:Class ;
+            rdfs:subClassOf :DramaSong .
+
+
+###  http://www.song.com/ontologies/song.owl#PalPoem
+:PalPoem rdf:type owl:Class ;
+         rdfs:subClassOf :FolkSongs .
+
+
+###  http://www.song.com/ontologies/song.owl#PapreBailaSong
+:PapreBailaSong rdf:type owl:Class ;
+                rdfs:subClassOf :BailaSong .
+
+
+###  http://www.song.com/ontologies/song.owl#PartySomg
+:PartySomg rdf:type owl:Class ;
+           rdfs:subClassOf :SpecialSong ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasCategory ;
+                             owl:someValuesFrom :CalypsoBailaSong
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasCategory ;
+                             owl:someValuesFrom :RapSong
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasCategory ;
+                             owl:someValuesFrom :RomanticSong
+                           ] .
+
+
+###  http://www.song.com/ontologies/song.owl#PatrioticSong
+:PatrioticSong rdf:type owl:Class ;
+               rdfs:subClassOf :PsychologicalSong .
+
+
+###  http://www.song.com/ontologies/song.owl#PopSong
+:PopSong rdf:type owl:Class ;
+         rdfs:subClassOf :SongCategory .
+
+
+###  http://www.song.com/ontologies/song.owl#PopularSong
+:PopularSong rdf:type owl:Class ;
+             owl:equivalentClass [ owl:intersectionOf ( :Song
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :hasBilbordChartValue ;
+                                                          owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                               owl:onDatatype xsd:integer ;
+                                                                               owl:withRestrictions ( [ xsd:maxExclusive 50
+                                                                                                      ]
+                                                                                                    )
+                                                                             ]
+                                                        ]
+                                                      ) ;
+                                   rdf:type owl:Class
+                                 ] .
+
+
+###  http://www.song.com/ontologies/song.owl#PoyadaySong
+:PoyadaySong rdf:type owl:Class ;
+             owl:equivalentClass [ owl:intersectionOf ( :Song
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :hasCategory ;
+                                                          owl:someValuesFrom :BuddhistSong
+                                                        ]
+                                                      ) ;
+                                   rdf:type owl:Class
+                                 ] .
+
+
+###  http://www.song.com/ontologies/song.owl#PsychologicalSong
+:PsychologicalSong rdf:type owl:Class ;
+                   rdfs:subClassOf :SongCategory .
+
+
+###  http://www.song.com/ontologies/song.owl#PunkSong
+:PunkSong rdf:type owl:Class ;
+          rdfs:subClassOf :RockSong .
+
+
+###  http://www.song.com/ontologies/song.owl#RapSong
+:RapSong rdf:type owl:Class ;
+         rdfs:subClassOf :HipHopSong .
+
+
+###  http://www.song.com/ontologies/song.owl#ReggaeSong
+:ReggaeSong rdf:type owl:Class ;
+            rdfs:subClassOf :SongCategory .
+
+
+###  http://www.song.com/ontologies/song.owl#ReligiousSong
+:ReligiousSong rdf:type owl:Class ;
+               rdfs:subClassOf :SongCategory .
+
+
+###  http://www.song.com/ontologies/song.owl#RockSong
+:RockSong rdf:type owl:Class ;
+          rdfs:subClassOf :SongCategory .
+
+
+###  http://www.song.com/ontologies/song.owl#RomanticSong
+:RomanticSong rdf:type owl:Class ;
+              rdfs:subClassOf :PsychologicalSong .
+
+
+###  http://www.song.com/ontologies/song.owl#Sad
+:Sad rdf:type owl:Class ;
+     rdfs:subClassOf :Feelingmode .
+
+
+###  http://www.song.com/ontologies/song.owl#SelahSueSong
+:SelahSueSong rdf:type owl:Class ;
+              rdfs:subClassOf :ReggaeSong .
+
+
+###  http://www.song.com/ontologies/song.owl#ShortSong
+:ShortSong rdf:type owl:Class ;
+           owl:equivalentClass [ owl:intersectionOf ( :Song
+                                                      [ rdf:type owl:Restriction ;
+                                                        owl:onProperty :hasSongTimeValue ;
+                                                        owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                             owl:onDatatype xsd:integer ;
+                                                                             owl:withRestrictions ( [ xsd:maxExclusive 200
+                                                                                                    ]
+                                                                                                  )
+                                                                           ]
+                                                      ]
+                                                    ) ;
+                                 rdf:type owl:Class
+                               ] .
+
+
+###  http://www.song.com/ontologies/song.owl#SinhalaNewYearFestivalSong
+:SinhalaNewYearFestivalSong rdf:type owl:Class ;
+                            owl:equivalentClass [ rdf:type owl:Class ;
+                                                  owl:unionOf ( [ owl:intersectionOf ( :Song
+                                                                                       [ rdf:type owl:Restriction ;
+                                                                                         owl:onProperty :hasCategory ;
+                                                                                         owl:someValuesFrom :CartPoem
+                                                                                       ]
+                                                                                     ) ;
+                                                                  rdf:type owl:Class
+                                                                ]
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty :hasCategory ;
+                                                                  owl:someValuesFrom :PalPoem
+                                                                ]
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty :hasCategory ;
+                                                                  owl:someValuesFrom :SpecialDramaSong
+                                                                ]
+                                                              )
+                                                ] ;
+                            rdfs:subClassOf :Song .
+
+
+###  http://www.song.com/ontologies/song.owl#SinhlaTamilNewYearSong
+:SinhlaTamilNewYearSong rdf:type owl:Class ;
+                        rdfs:subClassOf :SpecialSong ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasCategory ;
+                                          owl:someValuesFrom :BailaSong
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasCategory ;
+                                          owl:someValuesFrom :CartPoem
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasCategory ;
+                                          owl:someValuesFrom :FerryPoems
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasCategory ;
+                                          owl:someValuesFrom :GalPoems
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasCategory ;
+                                          owl:someValuesFrom :KamulanguSong
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasCategory ;
+                                          owl:someValuesFrom :MinesPoem
+                                        ] ,
+                                        [ rdf:type owl:Restriction ;
+                                          owl:onProperty :hasCategory ;
+                                          owl:someValuesFrom :SpecialDramaSong
+                                        ] .
+
+
+###  http://www.song.com/ontologies/song.owl#SiyahambaSong
+:SiyahambaSong rdf:type owl:Class ;
+               rdfs:subClassOf :FolkSongs .
+
+
+###  http://www.song.com/ontologies/song.owl#Song
+:Song rdf:type owl:Class ;
+      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                        owl:onProperty :haspublisher ;
+                        owl:someValuesFrom :SongPblisher
+                      ] .
+
+
+###  http://www.song.com/ontologies/song.owl#SongCategory
+:SongCategory rdf:type owl:Class .
+
+
+###  http://www.song.com/ontologies/song.owl#SongPblisher
+:SongPblisher rdf:type owl:Class .
+
+
+###  http://www.song.com/ontologies/song.owl#SonyATVMusic
+:SonyATVMusic rdf:type owl:Class ;
+              rdfs:subClassOf :SongPblisher .
+
+
+###  http://www.song.com/ontologies/song.owl#SpecialDramaSong
+:SpecialDramaSong rdf:type owl:Class ;
+                  rdfs:subClassOf :DramaSong .
+
+
+###  http://www.song.com/ontologies/song.owl#SpecialSong
+:SpecialSong rdf:type owl:Class ;
+             rdfs:subClassOf :Song .
+
+
+###  http://www.song.com/ontologies/song.owl#StageDramaSong
+:StageDramaSong rdf:type owl:Class ;
+                rdfs:subClassOf :DramaSong .
+
+
+###  http://www.song.com/ontologies/song.owl#SuaSong
+:SuaSong rdf:type owl:Class ;
+         rdfs:subClassOf :FolkSongs .
+
+
+###  http://www.song.com/ontologies/song.owl#TeledramaSong
+:TeledramaSong rdf:type owl:Class ;
+               rdfs:subClassOf :DramaSong .
+
+
+###  http://www.song.com/ontologies/song.owl#TvSeriesSong
+:TvSeriesSong rdf:type owl:Class ;
+              rdfs:subClassOf :TeledramaSong .
+
+
+###  http://www.song.com/ontologies/song.owl#UniversalMusic
+:UniversalMusic rdf:type owl:Class ;
+                rdfs:subClassOf :SongPblisher .
+
+
+###  http://www.song.com/ontologies/song.owl#UnpopularSong
+:UnpopularSong rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :Song
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :hasBilbordChartValue ;
+                                                            owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                 owl:onDatatype xsd:integer ;
+                                                                                 owl:withRestrictions ( [ xsd:minExclusive 50
+                                                                                                        ]
+                                                                                                      )
+                                                                               ]
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] .
+
+
+###  http://www.song.com/ontologies/song.owl#VesakSong
+:VesakSong rdf:type owl:Class ;
+           rdfs:subClassOf :SpecialSong ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasCategory ;
+                             owl:someValuesFrom :DevotionalSong
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasCategory ;
+                             owl:someValuesFrom :DhammaSong
+                           ] .
+
+
+###  http://www.song.com/ontologies/song.owl#WaddaBailaSong
+:WaddaBailaSong rdf:type owl:Class ;
+                rdfs:subClassOf :BailaSong .
+
+
+###  http://www.song.com/ontologies/song.owl#WeddingAnniversarySong
+:WeddingAnniversarySong rdf:type owl:Class ;
+                        owl:equivalentClass [ rdf:type owl:Class ;
+                                              owl:unionOf ( [ owl:intersectionOf ( :Song
+                                                                                   [ rdf:type owl:Restriction ;
+                                                                                     owl:onProperty :hasCategory ;
+                                                                                     owl:allValuesFrom :BailaSong
+                                                                                   ]
+                                                                                 ) ;
+                                                              rdf:type owl:Class
+                                                            ]
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :hasCategory ;
+                                                              owl:someValuesFrom :RomanticSong
+                                                            ]
+                                                          )
+                                            ] ;
+                        rdfs:subClassOf :Song .
+
+
+###  http://www.song.com/ontologies/song.owl#WeddingSong
+:WeddingSong rdf:type owl:Class ;
+             rdfs:subClassOf :SpecialSong ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasCategory ;
+                               owl:someValuesFrom :BailaSong
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasCategory ;
+                               owl:someValuesFrom :RomanticSong
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasCategory ;
+                               owl:someValuesFrom :TeledramaSong
+                             ] .
+
+
+###  http://www.song.com/ontologies/song.owl#WixenMusic
+:WixenMusic rdf:type owl:Class ;
+            rdfs:subClassOf :SongPblisher .
+
+
+###  http://www.song.com/ontologies/song.owl#ZebdaSong
+:ZebdaSong rdf:type owl:Class ;
+           rdfs:subClassOf :ReggaeSong .
+
+
+###  http://www.song.com/ontologies/song.owl#R'n'BSong
+<http://www.song.com/ontologies/song.owl#R'n'BSong> rdf:type owl:Class ;
+                                                    rdfs:subClassOf :HipHopSong .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.song.com/ontologies/song.owl#Ahala_malin_gas_pirila
+:Ahala_malin_gas_pirila rdf:type owl:NamedIndividual ,
+                                 :SinhlaTamilNewYearSong ;
+                        :hasBilbordChartValue 300 ;
+                        :hasSongTimeValue 210 .
+
+
+###  http://www.song.com/ontologies/song.owl#Awurudu_sade
+:Awurudu_sade rdf:type owl:NamedIndividual ,
+                       :SinhlaTamilNewYearSong ;
+              :hasBilbordChartValue 400 ;
+              :hasSongTimeValue 291 .
+
+
+###  http://www.song.com/ontologies/song.owl#Baby
+:Baby rdf:type owl:NamedIndividual ,
+               :Lovesong ;
+      :hasBilbordChartValue 38 ;
+      :hasSongTimeValue 219 .
+
+
+###  http://www.song.com/ontologies/song.owl#Bethleheme_ada__raa
+:Bethleheme_ada__raa rdf:type owl:NamedIndividual ,
+                              :ChristmasSong ;
+                     :hasBilbordChartValue 400 ;
+                     :hasSongTimeValue 222 .
+
+
+###  http://www.song.com/ontologies/song.owl#Better_together
+:Better_together rdf:type owl:NamedIndividual ,
+                          :WeddingSong ;
+                 :hasBilbordChartValue 36 ;
+                 :hasSongTimeValue 222 .
+
+
+###  http://www.song.com/ontologies/song.owl#Champion
+:Champion rdf:type owl:NamedIndividual ,
+                   :MotivationalRapSong ;
+          :hasBilbordChartValue 30 ;
+          :hasSongTimeValue 166 .
+
+
+###  http://www.song.com/ontologies/song.owl#DannoBudunge
+:DannoBudunge rdf:type owl:NamedIndividual ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasCategory ;
+                         owl:someValuesFrom :DevotionalSong
+                       ] ;
+              :hasBilbordChartValue 80 ;
+              :hasSongTimeValue 340 .
+
+
+###  http://www.song.com/ontologies/song.owl#EndlessLove
+:EndlessLove rdf:type owl:NamedIndividual ,
+                      :Lovesong ;
+             :hasBilbordChartValue 40 ;
+             :hasSongTimeValue 264 .
+
+
+###  http://www.song.com/ontologies/song.owl#Heeneta_Awidan_yan
+:Heeneta_Awidan_yan rdf:type owl:NamedIndividual ,
+                             :MotivationalRapSong ;
+                    :hasBilbordChartValue 500 ;
+                    :hasSongTimeValue 152 .
+
+
+###  http://www.song.com/ontologies/song.owl#Kings_never_die
+:Kings_never_die rdf:type owl:NamedIndividual ,
+                          :MotivationalRapSong ;
+                 :hasBilbordChartValue 35 ;
+                 :hasSongTimeValue 298 .
+
+
+###  http://www.song.com/ontologies/song.owl#KiriKoduHithata
+:KiriKoduHithata rdf:type owl:NamedIndividual ,
+                          :Lovesong ;
+                 :hasBilbordChartValue 579 ;
+                 :hasSongTimeValue 315 .
+
+
+###  http://www.song.com/ontologies/song.owl#Kiri_itire_nawa_wasare
+:Kiri_itire_nawa_wasare rdf:type owl:NamedIndividual ,
+                                 :SinhlaTamilNewYearSong ;
+                        :hasBilbordChartValue 560 ;
+                        :hasSongTimeValue 192 .
+
+
+###  http://www.song.com/ontologies/song.owl#LoseYourSelf
+:LoseYourSelf rdf:type owl:NamedIndividual ,
+                       :MotivationalRapSong ;
+              :hasBilbordChartValue 4 ;
+              :hasSongTimeValue 323 .
+
+
+###  http://www.song.com/ontologies/song.owl#MangalaNakathta
+:MangalaNakathta rdf:type owl:NamedIndividual ,
+                          :WeddingSong ;
+                 :hasBilbordChartValue 670 ;
+                 :hasSongTimeValue 252 .
+
+
+###  http://www.song.com/ontologies/song.owl#Me_awurudu_kale
+:Me_awurudu_kale rdf:type owl:NamedIndividual ,
+                          :SinhlaTamilNewYearSong ;
+                 :hasBilbordChartValue 800 ;
+                 :hasSongTimeValue 298 .
+
+
+###  http://www.song.com/ontologies/song.owl#Mee_Nagaraya
+:Mee_Nagaraya rdf:type owl:NamedIndividual ,
+                       :Lovesong ;
+              :hasBilbordChartValue 980 ;
+              :hasSongTimeValue 269 .
+
+
+###  http://www.song.com/ontologies/song.owl#Muni_guna_waruna
+:Muni_guna_waruna rdf:type owl:NamedIndividual ,
+                           :VesakSong ;
+                  :hasBilbordChartValue 1020 ;
+                  :hasSongTimeValue 255 .
+
+
+###  http://www.song.com/ontologies/song.owl#NaththalDaRaa
+:NaththalDaRaa rdf:type owl:NamedIndividual ,
+                        :ChristmasSong ;
+               :hasBilbordChartValue 1050 ;
+               :hasSongTimeValue 220 .
+
+
+###  http://www.song.com/ontologies/song.owl#NaththalDaSeethaRayaka
+:NaththalDaSeethaRayaka rdf:type owl:NamedIndividual ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasCategory ;
+                                   owl:someValuesFrom :ChristianSong
+                                 ] ;
+                        :hasBilbordChartValue 500 ;
+                        :hasSongTimeValue 245 .
+
+
+###  http://www.song.com/ontologies/song.owl#Nudukanane
+:Nudukanane rdf:type owl:NamedIndividual ,
+                     :VesakSong ;
+            :hasBilbordChartValue 769 ;
+            :hasSongTimeValue 266 .
+
+
+###  http://www.song.com/ontologies/song.owl#One_dance
+:One_dance rdf:type owl:NamedIndividual ,
+                    :PartySomg ;
+           :hasBilbordChartValue 42 ;
+           :hasSongTimeValue 175 .
+
+
+###  http://www.song.com/ontologies/song.owl#Perfect
+:Perfect rdf:type owl:NamedIndividual ,
+                  :WeddingSong ;
+         :hasBilbordChartValue 6 ;
+         :hasSongTimeValue 280 .
+
+
+###  http://www.song.com/ontologies/song.owl#Pin_bima_diluna
+:Pin_bima_diluna rdf:type owl:NamedIndividual ,
+                          :VesakSong ;
+                 :hasBilbordChartValue 700 ;
+                 :hasSongTimeValue 153 .
+
+
+###  http://www.song.com/ontologies/song.owl#Reborn
+:Reborn rdf:type owl:NamedIndividual ,
+                 :MotivationalRapSong ;
+        :hasBilbordChartValue 34 ;
+        :hasSongTimeValue 232 .
+
+
+###  http://www.song.com/ontologies/song.owl#Sanda_wage
+:Sanda_wage rdf:type owl:NamedIndividual ,
+                     :WeddingSong ;
+            :hasBilbordChartValue 890 ;
+            :hasSongTimeValue 191 .
+
+
+###  http://www.song.com/ontologies/song.owl#SantaClausisComing
+:SantaClausisComing rdf:type owl:NamedIndividual ,
+                             :ChristmasSong ;
+                    :hasBilbordChartValue 34 ;
+                    :hasSongTimeValue 302 .
+
+
+###  http://www.song.com/ontologies/song.owl#SeenuHadin
+:SeenuHadin rdf:type owl:NamedIndividual ,
+                     :ChristianSong ;
+            :hasBilbordChartValue 689 ;
+            :hasSongTimeValue 302 .
+
+
+###  http://www.song.com/ontologies/song.owl#Stay
+:Stay rdf:type owl:NamedIndividual ,
+               :Lovesong ;
+      :hasBilbordChartValue 44 ;
+      :hasSongTimeValue 158 .
+
+
+###  http://www.song.com/ontologies/song.owl#Suba_mngalam
+:Suba_mngalam rdf:type owl:NamedIndividual ,
+                       :WeddingSong ;
+              :hasBilbordChartValue 896 ;
+              :hasSongTimeValue 290 .
+
+
+###  http://www.song.com/ontologies/song.owl#Sumihiri_Pane
+:Sumihiri_Pane rdf:type owl:NamedIndividual ,
+                        :PartySomg ;
+               :hasBilbordChartValue 70 ;
+               :hasSongTimeValue 278 .
+
+
+###  http://www.song.com/ontologies/song.owl#Supem_Hangum
+:Supem_Hangum rdf:type owl:NamedIndividual ,
+                       :Lovesong ;
+              :hasBilbordChartValue 487 ;
+              :hasSongTimeValue 230 .
+
+
+###  http://www.song.com/ontologies/song.owl#Surangani
+:Surangani rdf:type owl:NamedIndividual ,
+                    :PartySomg ;
+           :hasBilbordChartValue 908 ;
+           :hasSongTimeValue 188 .
+
+
+###  http://www.song.com/ontologies/song.owl#Thun_hela_mangalle
+:Thun_hela_mangalle rdf:type owl:NamedIndividual ,
+                             :SinhlaTamilNewYearSong ;
+                    :hasBilbordChartValue 1489 ;
+                    :hasSongTimeValue 254 .
+
+
+###  http://www.song.com/ontologies/song.owl#Unmada_Yu_Premadare
+:Unmada_Yu_Premadare rdf:type owl:NamedIndividual ;
+                     :hasBilbordChartValue 894 ;
+                     :hasSongTimeValue 217 .
+
+
+###  http://www.song.com/ontologies/song.owl#Wedadurano
+:Wedadurano rdf:type owl:NamedIndividual ,
+                     :VesakSong ;
+            :hasBilbordChartValue 967 ;
+            :hasSongTimeValue 226 .
+
+
+###  http://www.song.com/ontologies/song.owl#WinterWonderland
+:WinterWonderland rdf:type owl:NamedIndividual ,
+                           :ChristmasSong ;
+                  :hasBilbordChartValue 24 ;
+                  :hasSongTimeValue 189 .
+
+
+###  http://www.song.com/ontologies/song.owl#Work
+:Work rdf:type owl:NamedIndividual ,
+               :PartySomg ;
+      :hasBilbordChartValue 45 ;
+      :hasSongTimeValue 218 .
+
+
+###  http://www.song.com/ontologies/song.owl#Yaman_bando
+:Yaman_bando rdf:type owl:NamedIndividual ,
+                      :PartySomg ;
+             :hasBilbordChartValue 3456 ;
+             :hasSongTimeValue 292 .
+
+
+###  http://www.song.com/ontologies/song.owl#Yashodara
+:Yashodara rdf:type owl:NamedIndividual ,
+                    :VesakSong ;
+           :hasBilbordChartValue 567 ;
+           :hasSongTimeValue 182 .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :BailaSong
+                :BalladSong
+                :CartPoem
+                :FerryPoems
+                :GalPoems
+                :KamulanguSong
+                :MinesPoem
+                :NimboodaSong
+                :PalPoem
+                :SiyahambaSong
+                :SuaSong
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :CalypsoBailaSong
+                :ChorousBailaSong
+                :PapreBailaSong
+                :WaddaBailaSong
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :ChristmasSong
+                :Lovesong
+                :PartySomg
+                :VesakSong
+                :WeddingSong
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :DeathMetalSong
+                :IndieSong
+                :MetalSong
+                :PunkSong
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :GangstaSong
+                :RapSong
+                <http://www.song.com/ontologies/song.owl#R'n'BSong>
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Happy
+                :Neutral
+                :Sad
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :KobaltMusic
+                :MEntertainment
+                :SonyATVMusic
+                :UniversalMusic
+                :WixenMusic
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :MohombiSong
+                :SelahSueSong
+                :ZebdaSong
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :MotivationalSong
+                :PatrioticSong
+                :RomanticSong
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :NurthiSong
+                :SpecialDramaSong
+                :StageDramaSong
+                :TeledramaSong
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Song
+                :SongCategory
+                :SongPblisher
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
